@@ -38,10 +38,11 @@ if __name__ == '__main__':
     }
 
     read_days = []
+    day_shift = 0
     for month_number, month_read_days in enumerate(read_days_diary.values()):
-        day_shift = sum([MONTH_DAYS[i] for i in range(month_number)])
         corrected_month_days = np.array(month_read_days) - 1 + day_shift
         read_days.extend(corrected_month_days.tolist())
+        day_shift += MONTH_DAYS[month_number]
 
     prepare_ideal_burndown()
     days_passed = time.localtime().tm_yday
